@@ -46,7 +46,7 @@ class AdalineGD:
         self.losses_ = [] # tracking losses 
 
         for i in range(self.n_iter):
-            net_input = self.net_input(X)
+            net_input = self.net_input(X) # processing all training examples at once
             output = self.activation(net_input)
             errors = y - output
             self.w_ += self.eta * 2.0 * X.T.dot(errors) / X.shape[0]
