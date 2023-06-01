@@ -86,7 +86,7 @@ class AdalineSGD:
                 X,y = self._shuffle(X,y)
             losses = []
             for xi, target in zip(X,y):
-                losses.append(self._update_weights(xi,target))
+                losses.append(self._update_weights(xi,target)) # Updating weights after each example
             avg_loss = np.mean(losses)
             self.losses_.append(avg_loss)
         
