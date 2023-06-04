@@ -10,10 +10,7 @@ class ScratchPerceptron:
         self.bias = torch.tensor(0.0)
     
     def __forward(self, X):
-
-        X = torch.from_numpy(X)
-        X = X.to(torch.float32)
-        res = torch.dot(X, self.weights) + self.bias # calculating W_i*X_i + b
+        res = torch.matmul(X, self.weights) + self.bias # calculating W_i*X_i + b
         
         return torch.where(res > 0 , 1.0,0.0) # return 1 if res > threshold else 0 ---> class prediction
 
@@ -21,15 +18,17 @@ class ScratchPerceptron:
         
         pred = self.__forward(X)
         error = true_y - pred
-
-        self.weights += error * X # using broadcasting operation
-        self.bias += error
+        for (i,j) in zip(error.view([-1,1]) * X, error):
+            self.weights += i # using broadcasting operation
+            self.bias += j
     
     def train(self, X, y, n_iter=10): # this function is accessible outside the class and will return updated weights and bias
+        X = torch.tensor(X, dtype=torch.float32)
+        y = torch.tensor(y, dtype=torch.float32)
+        
         for _ in range(n_iter):
             error_count = 0
-            for i,j in zip(X,y):
-                self.__update_weights(i,j)
+            self.__update_weights(X,y)
         
         return (self.weights, self.bias)
 
