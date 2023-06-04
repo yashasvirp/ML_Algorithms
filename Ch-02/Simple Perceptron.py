@@ -44,7 +44,7 @@ class ScratchPerceptron:
         x1_max = 20
         x2_max = (-(w1*x1_max) - b)/w2
 
-        return x1_min, x2_min, x1_max, x2_max
+        return x1_min, x1_max, x2_min, x2_max
 
         
 s = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
@@ -57,17 +57,13 @@ X = df.iloc[:100,[0,2]].values# extracting features as Sepal and Petal lengths
 
 # creating an instance
 ppn = ScratchPerceptron(2)
-xb1, yb1, xb2, yb2 = ppn.plot_boundary() # line before training
-print(xb1, yb1, xb2, yb2)
+
+xb1_min, xb1_max, xb2_min, xb2_max = ppn.plot_boundary() # line before training
+# print(xb1, yb1, xb2, yb2)
+
 W, b = ppn.train(X,y)
-x1, y1, x2, y2 = ppn.plot_boundary()
-print(x1, y1, x2, y2)
 
-
-
-print(W)
-print(b)
-
+x1_min, x1_max, x2_min, x2_max = ppn.plot_boundary()
 
 plt.plot(X[y==0,0], X[y==0,1], marker = "D", markersize=10, linestyle="", label="class 0") # plotting points where class label y = 0
 plt.plot(X[y==1,0], X[y==1,1], marker = "^", markersize=13, linestyle="", label="class 1") # plotting points where class label y = 1
@@ -75,9 +71,10 @@ plt.legend(loc=2)
 plt.xlim([0,10])
 plt.ylim([0,10])
 
-plt.plot([xb1,xb2],[yb1,yb2], color="r") # line before training the model
+# plt.plot([xb1_min, xb1_max], [xb2_min, xb2_max], color="r") # line before training the model
 
-plt.plot([x1,x2],[y1,y2], color="k") # line after training the model
+plt.plot([x1_min, x1_max], [x2_min, x2_max], color="k") # line after training the model
+
 
 plt.xlabel("Feature $x_1$", fontsize= 12)
 plt.ylabel("Feature $x_2$", fontsize= 12)
