@@ -15,7 +15,7 @@ class SoftmaxRegression(torch.nn.Module):
 
 import torch.nn.functional as F
 def cross_entropy(net_inputs, y):
-    activations = torch.softmax(net_inputs, dim=1)      # dim = 1 ensures all valurs ibn one rwo sum upto 1
+    activations = torch.softmax(net_inputs, dim=1)      # dim = 1 ensures all values in one row sum upto 1
     y_onehot = F.one_hot(y)
     loss = -torch.sum(torch.log(activations)*y_onehot, dim = 1)
     avg_loss = torch.mean(loss)
