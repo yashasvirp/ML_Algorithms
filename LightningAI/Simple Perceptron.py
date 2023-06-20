@@ -52,7 +52,7 @@ df = pd.read_csv(s,header = None, encoding = 'utf-8')
 
 y = df.iloc[:100,4].values  # extracting classes
 y = np.where(y == 'Iris-setosa', 0, 1)
-X = df.iloc[:100,[0,2]].values# extracting features as Sepal and Petal lengths
+X = df.iloc[:100,[0,2]].values # extracting features as Sepal and Petal lengths
 
 
 # creating an instance
