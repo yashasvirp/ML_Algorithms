@@ -1,8 +1,8 @@
 '''Adaptive Linear Neuron - Uses gradient descent.
 
-The weight update is calculated based on all examples in the training dataset (instead of updating the parameters
-incrementally after each training example), which is why this approach is also referred to as batch
-gradient descent. We will refer to this process as full batch gradient descent.'''
+The weight update is calculated based on every example at once in the training dataset (instead of updating the parameters
+after whole training batch), which is why this approach is also referred to as stochastic
+gradient descent.'''
 
 import numpy as np
 import matplotlib.pyplot as plt
