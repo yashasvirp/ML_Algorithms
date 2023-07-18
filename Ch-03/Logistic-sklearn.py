@@ -80,7 +80,7 @@ array([[3.81527885e-09, 1.44792866e-01, 8.55207131e-01],
        [8.48831425e-01, 1.51168575e-01, 2.62277619e-14]])
 
        First row - probability of first flower for each class
-       second row - probability of first flower for each class, and so on. Highest probability for each sample is given by argmax
+       second row - probability of second flower for each class, and so on. Highest probability for each sample is given by argmax
 
 In [14]: lr.predict_proba(X_test_std[:3,:]).argmax(axis=1)
 Out[14]: array([2, 0, 0]) ----> class for each flower
