@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import torchvision.utils as vutils
-import PIL as Image
+from PIL import Image
 from torch.utils.data import DataLoader, Dataset
 from torchvision import transforms
 
@@ -84,5 +84,21 @@ if __name__ == "__main__":
     val_loader = DataLoader(val_set, batch_size=32, shuffle=True, num_workers=2)
 
     test_set = MyDataset("mnist-pngs/test.csv", "mnist-pngs/", transform=data_transforms["test"])
-    val_loader = DataLoader(val_set, batch_size=32, shuffle=True, num_workers=2)
+    test_loader = DataLoader(dataset=test_set, batch_size=32, shuffle=False, num_workers=2)
 
+    num_epochs = 1
+    for epoch in range(num_epochs):
+
+        for batch_idx, (x, y) in enumerate(train_loader):
+            if batch_idx >= 3:
+                break
+            print(" Batch index:", batch_idx, end="")
+            print(" | Batch size:", y.shape[0], end="")
+            print(" | x shape:", x.shape, end="")
+            print(" | y shape:", y.shape)
+
+        print("Labels from current batch:", y)
+
+    # # Uncomment to visualize a data batch:
+    # batch = next(iter(train_loader))
+    # viz_batch_images(batch[0])
