@@ -1,3 +1,0 @@
-[submodule "LightningAI/LightningAI/fashion-mnist"]
-	path = LightningAI/LightningAI/fashion-mnist
-	url = git@github.com:zalandoresearch/fashion-mnist.git
